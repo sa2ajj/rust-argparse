@@ -732,23 +732,17 @@ struct HelpFormatter<'a, 'b: 'a> {
 }
 
 impl<'a, 'b> HelpFormatter<'a, 'b> {
-    pub fn print_usage(parser: &ArgumentParser, name: &str, writer: &mut Writer)
-        -> IoResult<()>
-    {
+    pub fn print_usage(parser: &ArgumentParser, name: &str, writer: &mut Writer) -> IoResult<()> {
         return HelpFormatter { parser: parser, name: name, buf: writer }
             .write_usage();
     }
 
-    pub fn print_help(parser: &ArgumentParser, name: &str, writer: &mut Writer)
-        -> IoResult<()>
-    {
+    pub fn print_help(parser: &ArgumentParser, name: &str, writer: &mut Writer) -> IoResult<()> {
         return HelpFormatter { parser: parser, name: name, buf: writer }
             .write_help();
     }
 
-    pub fn print_argument(&mut self, arg: &GenericArgument<'b>)
-        -> IoResult<()>
-    {
+    pub fn print_argument(&mut self, arg: &GenericArgument<'b>) -> IoResult<()> {
         let mut num = 2;
         try!(self.buf.write_str("  "));
         try!(self.buf.write_str(arg.name));
@@ -878,5 +872,4 @@ impl<'a, 'b> HelpFormatter<'a, 'b> {
         try!(self.buf.write_char('\n'));
         return Ok(());
     }
-
 }
