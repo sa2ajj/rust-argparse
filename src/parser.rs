@@ -587,7 +587,7 @@ impl<'parser, 'refer, T: 'static + FromStr> Ref<'parser, 'refer, T> {
         self.parser.env_vars.push(Rc::new(EnvVar {
             varid: self.varid,
             name: varname,
-            action: box StoreAction { cell: self.cell.clone() },
+            action: box StoreAction {cell: self.cell.clone()},
             }));
         return self;
     }
@@ -605,12 +605,8 @@ pub struct ArgumentParser<'parser> {
     stop_on_first_argument: bool,
 }
 
-
-
 impl<'parser> ArgumentParser<'parser> {
-
     pub fn new() -> ArgumentParser<'parser> {
-
         let mut ap = ArgumentParser {
             description: "",
             vars: Vec::new(),
@@ -621,9 +617,10 @@ impl<'parser> ArgumentParser<'parser> {
             short_options: HashMap::new(),
             long_options: HashMap::new(),
             stop_on_first_argument: false,
-            };
-        ap.add_option_for(None, &["-h", "--help"], Flag(box HelpAction),
-            "show this help message and exit");
+        };
+        ap.add_option_for(None, &["-h", "--help"],
+                          Flag(box HelpAction),
+                          "show this help message and exit");
         return ap;
     }
 
